@@ -8,7 +8,9 @@ const Gallery = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await axios
-        .get(`https://api.unsplash.com/photos/?client_id=${unAccessKey}`)
+        .get(
+          `https://api.unsplash.com/photos/?client_id=${unAccessKey}&per_page=30`
+        )
         .then((res) => {
           return res.data;
         });
@@ -19,7 +21,7 @@ const Gallery = () => {
   }, []);
   console.log(images);
   return (
-    <div className="my-10 my-container grid lg:grid-cols-5  md:grid-cols-3 gap-2">
+    <div className="my-10 my-container grid lg:grid-cols-4  md:grid-cols-3 gap-4">
       {images.length > 0 &&
         images.map((img) => (
           <SingleImage key={img.id} image={img}></SingleImage>
