@@ -6,7 +6,8 @@ import { RouterProvider } from "react-router-dom";
 import { router } from "./Routes/Router.jsx";
 import AuthProvider from "./Context/AuthProvider";
 import SearchProvider from "./Context/SearchProvider";
-
+import Modal from "react-modal";
+Modal.setAppElement(document.getElementById("root"));
 ReactDOM.createRoot(document.getElementById("root")).render(
   <SearchProvider>
     <AuthProvider>

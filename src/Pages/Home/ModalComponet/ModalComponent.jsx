@@ -1,5 +1,7 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
+const unAccessKey = import.meta.env.VITE_unAccessKey;
 
 const ModalComponent = ({
   closeModal,
@@ -8,6 +10,7 @@ const ModalComponent = ({
   modalIsOpen,
   imageId,
 }) => {
+  const [image, setImage] = useState("");
   const customStyles = {
     content: {
       top: "50%",
@@ -18,15 +21,20 @@ const ModalComponent = ({
       transform: "translate(-50%, -50%)",
     },
   };
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = "#f00";
-  }
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.unsplash.com/photos/${imageId}?client_id=${unAccessKey}`
+      )
+      .then((res) => {
+        setImage(res.data);
+      });
+  }, []);
+
   return (
     <div>
       <Modal
         isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
@@ -34,7 +42,9 @@ const ModalComponent = ({
         <button className="btn btn-small" onClick={closeModal}>
           close
         </button>
-        <div>This is beautiful modal</div>
+        <div>
+          <img className="w-[500px] h-[500px]" src={image?.urls?.full} alt="" />
+        </div>
       </Modal>
     </div>
   );
