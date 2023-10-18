@@ -8,6 +8,7 @@ const Gallery = () => {
   const unAccessKey = import.meta.env.VITE_unAccessKey;
   const [images, setImages] = useState([]);
   const [searchImages, setSearchImages] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await axios

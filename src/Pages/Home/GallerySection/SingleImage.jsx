@@ -1,9 +1,20 @@
-import React from "react";
+import { useState } from "react";
 import { FiThumbsUp } from "react-icons/fi";
+import ModalComponent from "../ModalComponet/ModalComponent";
 const SingleImage = ({ image }) => {
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const openModal = () => {
+    setIsOpen(true);
+  };
+  const closeModal = () => {
+    setIsOpen(false);
+  };
   return (
     <div>
-      <div className="card card-compact  bg-base-100 shadow-xl">
+      <div
+        onClick={openModal}
+        className="card card-compact  bg-base-100 shadow-xl"
+      >
         <figure>
           <img className="w-full h-72" src={image.urls.thumb} alt="" />
         </figure>
@@ -27,6 +38,13 @@ const SingleImage = ({ image }) => {
           </div>
         </div>
       </div>
+      <ModalComponent
+        modalIsOpen={modalIsOpen}
+        closeModal={closeModal}
+        openModal={openModal}
+        setIsOpen={setIsOpen}
+        imageId={image?.id}
+      ></ModalComponent>
     </div>
   );
 };

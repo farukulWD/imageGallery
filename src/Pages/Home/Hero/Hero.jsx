@@ -26,7 +26,7 @@ const Hero = () => {
             <p className="mb-5">
               Over 2.4 million+ stock Images by our talented community
             </p>
-            <div className="  px-2">
+            <div className="text-black  px-2">
               <div className="max-w-md mx-auto rounded-lg overflow-hidden md:max-w-[800px]">
                 <div className="md:flex">
                   <div className="w-full p-3">
