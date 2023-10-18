@@ -7,6 +7,7 @@ const Gallery = () => {
   const { searchText, setSearchText } = useContext(SearchContext);
   const unAccessKey = import.meta.env.VITE_unAccessKey;
   const [images, setImages] = useState([]);
+  const [searchImages, setSearchImages] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       const data = await axios
@@ -31,17 +32,16 @@ const Gallery = () => {
         .then((res) => {
           return res.data;
         });
-      console.log(data);
+      setSearchImages(data?.results);
     };
 
     fetchData();
   }, [searchText]);
   return (
     <div className="my-10 my-container grid lg:grid-cols-4  md:grid-cols-3 gap-4">
-      {images.length > 0 &&
-        images.map((img) => (
-          <SingleImage key={img.id} image={img}></SingleImage>
-        ))}
+      {(searchImages.length > 0 ? searchImages : images).map((img) => (
+        <SingleImage key={img.id} image={img}></SingleImage>
+      ))}
     </div>
   );
 };

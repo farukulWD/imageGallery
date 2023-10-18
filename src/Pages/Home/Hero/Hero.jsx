@@ -2,13 +2,13 @@ import { useContext } from "react";
 import HeroBg from "../../../assets/HeroImage/Herobg.jpg";
 import { BiSolidMicrophone } from "react-icons/bi";
 import { SearchContext } from "../../../Context/SearchProvider";
+import { AiOutlineSearch } from "react-icons/ai";
 
 const Hero = () => {
   const { searchText, setSearchText } = useContext(SearchContext);
   const handleSearch = (text) => {
     setSearchText(text);
   };
-  console.log(searchText);
   return (
     <div>
       <div
@@ -31,9 +31,10 @@ const Hero = () => {
                 <div className="md:flex">
                   <div className="w-full p-3">
                     <div className="relative">
-                      <i className="absolute fa fa-search text-gray-400 top-5 left-4"></i>
+                      <AiOutlineSearch className="absolute fa fa-search top-5 left-4"></AiOutlineSearch>
                       <input
                         onKeyUp={(event) => handleSearch(event.target.value)}
+                        defaultValue={"mount"}
                         type="text"
                         className="bg-white h-14 w-full px-12 rounded-lg focus:outline-none "
                         name=""
