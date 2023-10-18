@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <div>
       <div
-        className="hero min-h-screen"
+        className="hero min-h-[400px]"
         style={{
           backgroundImage: `url(${HeroBg})`,
         }}
@@ -20,18 +20,18 @@ const Hero = () => {
             <p className="mb-5">
               Over 2.4 million+ stock Images by our talented community
             </p>
-            <div class="  px-2">
-              <div class="max-w-md mx-auto rounded-lg overflow-hidden md:max-w-[800px]">
-                <div class="md:flex">
-                  <div class="w-full p-3">
-                    <div class="relative">
-                      <i class="absolute fa fa-search text-gray-400 top-5 left-4"></i>
+            <div className="  px-2">
+              <div className="max-w-md mx-auto rounded-lg overflow-hidden md:max-w-[800px]">
+                <div className="md:flex">
+                  <div className="w-full p-3">
+                    <div className="relative">
+                      <i className="absolute fa fa-search text-gray-400 top-5 left-4"></i>
                       <input
                         type="text"
-                        class="bg-white h-14 w-full px-12 rounded-lg focus:outline-none "
+                        className="bg-white h-14 w-full px-12 rounded-lg focus:outline-none "
                         name=""
                       />
-                      <span class="absolute hover:cursor-pointer top-4 right-5 border-l pl-4">
+                      <span className="absolute hover:cursor-pointer top-4 right-5 border-l pl-4">
                         <BiSolidMicrophone></BiSolidMicrophone>
                       </span>
                     </div>
