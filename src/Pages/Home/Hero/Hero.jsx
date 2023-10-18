@@ -1,8 +1,14 @@
-import React from "react";
+import { useContext } from "react";
 import HeroBg from "../../../assets/HeroImage/Herobg.jpg";
 import { BiSolidMicrophone } from "react-icons/bi";
+import { SearchContext } from "../../../Context/SearchProvider";
 
 const Hero = () => {
+  const { searchText, setSearchText } = useContext(SearchContext);
+  const handleSearch = (text) => {
+    setSearchText(text);
+  };
+  console.log(searchText);
   return (
     <div>
       <div
@@ -27,6 +33,7 @@ const Hero = () => {
                     <div className="relative">
                       <i className="absolute fa fa-search text-gray-400 top-5 left-4"></i>
                       <input
+                        onKeyUp={(event) => handleSearch(event.target.value)}
                         type="text"
                         className="bg-white h-14 w-full px-12 rounded-lg focus:outline-none "
                         name=""

@@ -1,8 +1,10 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SingleImage from "./SingleImage";
+import { SearchContext } from "../../../Context/SearchProvider";
 
 const Gallery = () => {
+  const { searchText, setSearchText } = useContext(SearchContext);
   const unAccessKey = import.meta.env.VITE_unAccessKey;
   const [images, setImages] = useState([]);
   useEffect(() => {
@@ -19,7 +21,21 @@ const Gallery = () => {
 
     fetchData();
   }, []);
-  console.log(images);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await axios
+        .get(
+          `https://api.unsplash.com/search/photos/?client_id=${unAccessKey}&query=${searchText}`
+        )
+        .then((res) => {
+          return res.data;
+        });
+      console.log(data);
+    };
+
+    fetchData();
+  }, [searchText]);
   return (
     <div className="my-10 my-container grid lg:grid-cols-4  md:grid-cols-3 gap-4">
       {images.length > 0 &&
