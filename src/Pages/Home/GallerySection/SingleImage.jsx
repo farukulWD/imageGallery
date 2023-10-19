@@ -33,43 +33,67 @@ const SingleImage = ({ image }) => {
   const closeModal = () => {
     setIsOpen(false);
   };
+
+  const handleLike = (id) => {
+    axios
+      .post(
+        `https://api.unsplash.com/photos/${id}/like?client_id=${unAccessKey}`
+      )
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
-    <div>
-      <div
-        onClick={() => openModal()}
-        className="card card-compact  bg-base-100 shadow-xl"
-      >
-        <figure>
-          <img className="w-full h-72" src={image.urls.thumb} alt="" />
-        </figure>
-        <div className="card-body">
-          <div className="flex justify-between items-center">
-            <div className="flex gap-2 justify-between">
-              <img
-                className="w-10 h-10 rounded-full"
-                src={image?.user.profile_image.small}
-                alt=""
-              />
-              <div>
-                <p className="font-semibold">{image?.user.name}</p>
-                <p>@{image?.user.username}</p>
+    <>
+      <div>
+        <ModalComponent
+          modalIsOpen={modalIsOpen}
+          closeModal={closeModal}
+          openModal={openModal}
+          setIsOpen={setIsOpen}
+          image={getImage}
+        ></ModalComponent>
+        <div className="card card-compact  bg-base-100 shadow-xl">
+          <figure>
+            <img
+              onClick={() => openModal()}
+              className="w-full h-72"
+              src={image.urls.thumb}
+              alt=""
+            />
+          </figure>
+          <div className="card-body">
+            <div className="flex justify-between items-center">
+              <div className="flex gap-2 justify-between">
+                <img
+                  className="w-10 h-10 rounded-full"
+                  src={image?.user?.profile_image.small}
+                  alt=""
+                />
+                <div>
+                  <p className="font-semibold">{image?.user.name}</p>
+                  <p>@{image?.user.username}</p>
+                </div>
               </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <FiThumbsUp></FiThumbsUp>
-              <p>{image?.likes}</p>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => {
+                    handleLike(image?.id);
+                  }}
+                >
+                  <FiThumbsUp></FiThumbsUp>
+                </button>
+                <p>{image?.likes}</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <ModalComponent
-        modalIsOpen={modalIsOpen}
-        closeModal={closeModal}
-        openModal={openModal}
-        setIsOpen={setIsOpen}
-        image={getImage}
-      ></ModalComponent>
-    </div>
+    </>
   );
 };
 

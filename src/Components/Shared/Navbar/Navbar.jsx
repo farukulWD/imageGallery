@@ -6,7 +6,7 @@ const Navbar = () => {
   const { user, loading, logOut } = useContext(AuthContext);
   const menuItems = (
     <>
-      <li>
+      {/* <li>
         <Link to={"/"}>Home</Link>
       </li>
 
@@ -16,7 +16,7 @@ const Navbar = () => {
 
       <li>
         <Link>Photos</Link>
-      </li>
+      </li> */}
     </>
   );
   const handleLogOut = () => {

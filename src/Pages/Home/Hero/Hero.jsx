@@ -5,10 +5,8 @@ import { SearchContext } from "../../../Context/SearchProvider";
 import { AiOutlineSearch } from "react-icons/ai";
 
 const Hero = () => {
-  const { searchText, setSearchText } = useContext(SearchContext);
-  const handleSearch = (text) => {
-    setSearchText(text);
-  };
+  const { searchText, setSearchText, handleSearch } = useContext(SearchContext);
+
   return (
     <div>
       <div
