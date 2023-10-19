@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { FiThumbsUp } from "react-icons/fi";
 import { AiOutlineTwitter, AiOutlineInstagram } from "react-icons/ai";
 import Modal from "react-modal";
+import { saveAs } from "file-saver";
 const unAccessKey = import.meta.env.VITE_unAccessKey;
 
 const ModalComponent = ({
@@ -29,6 +30,9 @@ const ModalComponent = ({
         `https://api.unsplash.com/photos/${dnId}/download?client_id=${unAccessKey}`
       )
       .then((res) => {
+        const downloadUrl = res.data.url;
+        saveAs(downloadUrl, "image.jpg");
+
         console.log(res.data);
       });
   };
