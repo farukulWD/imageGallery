@@ -34,7 +34,7 @@ const Hero = () => {
                       <AiOutlineSearch className="absolute fa fa-search top-5 left-4"></AiOutlineSearch>
                       <input
                         onKeyUp={(event) => handleSearch(event.target.value)}
-                        defaultValue={"mount"}
+                        placeholder="Search photos"
                         type="text"
                         className="bg-white h-14 w-full px-12 rounded-lg focus:outline-none "
                         name=""

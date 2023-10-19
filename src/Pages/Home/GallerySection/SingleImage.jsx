@@ -1,18 +1,42 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiThumbsUp } from "react-icons/fi";
 import ModalComponent from "../ModalComponet/ModalComponent";
+const unAccessKey = import.meta.env.VITE_unAccessKey;
+import axios from "axios";
 const SingleImage = ({ image }) => {
+  const [initialAPICallMade, setInitialAPICallMade] = useState(false);
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [getImage, setGetImage] = useState({});
+
+  useEffect(() => {
+    if (initialAPICallMade) {
+      const getData = async () => {
+        const data = await axios
+          .get(
+            `https://api.unsplash.com/photos/${image.id}?client_id=${unAccessKey}`
+          )
+          .then((res) => {
+            return res.data;
+          });
+        setGetImage(data);
+      };
+
+      getData();
+    }
+  }, [initialAPICallMade]);
+
   const openModal = () => {
+    setInitialAPICallMade(true);
     setIsOpen(true);
   };
+  console.log(getImage);
   const closeModal = () => {
     setIsOpen(false);
   };
   return (
     <div>
       <div
-        onClick={openModal}
+        onClick={() => openModal()}
         className="card card-compact  bg-base-100 shadow-xl"
       >
         <figure>
@@ -31,7 +55,7 @@ const SingleImage = ({ image }) => {
                 <p>@{image?.user.username}</p>
               </div>
             </div>
-            <div className="flex gap-2">
+            <div className="flex items-center gap-2">
               <FiThumbsUp></FiThumbsUp>
               <p>{image?.likes}</p>
             </div>
@@ -43,7 +67,7 @@ const SingleImage = ({ image }) => {
         closeModal={closeModal}
         openModal={openModal}
         setIsOpen={setIsOpen}
-        imageId={image?.id}
+        image={getImage}
       ></ModalComponent>
     </div>
   );
