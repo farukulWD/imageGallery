@@ -32,7 +32,7 @@ const SingleImage = ({ image }) => {
     setInitialAPICallMade(true);
     setIsOpen(true);
   };
-  console.log(getImage);
+
   const closeModal = () => {
     setIsOpen(false);
   };

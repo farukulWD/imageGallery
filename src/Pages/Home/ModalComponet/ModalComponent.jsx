@@ -43,7 +43,6 @@ const ModalComponent = ({
         setDownloadLoading(false);
       });
   };
-  console.log(image?.tags);
 
   return (
     <div className="relative  p-2 rounded-md">

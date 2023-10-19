@@ -37,9 +37,9 @@ const Hero = () => {
                         className="bg-white h-14 w-full px-12 rounded-lg focus:outline-none "
                         name=""
                       />
-                      <span className="absolute hover:cursor-pointer top-4 right-5 border-l pl-4">
+                      {/* <span className="absolute hover:cursor-pointer top-4 right-5 border-l pl-4">
                         <BiSolidMicrophone></BiSolidMicrophone>
-                      </span>
+                      </span> */}
                     </div>
                   </div>
                 </div>
