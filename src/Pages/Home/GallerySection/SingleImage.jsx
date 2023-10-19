@@ -7,10 +7,12 @@ const SingleImage = ({ image }) => {
   const [initialAPICallMade, setInitialAPICallMade] = useState(false);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [getImage, setGetImage] = useState({});
+  const [imageLoading, setImageLoading] = useState(false);
 
   useEffect(() => {
     if (initialAPICallMade) {
       const getData = async () => {
+        setImageLoading(true);
         const data = await axios
           .get(
             `https://api.unsplash.com/photos/${image.id}?client_id=${unAccessKey}`
@@ -19,6 +21,7 @@ const SingleImage = ({ image }) => {
             return res.data;
           });
         setGetImage(data);
+        setImageLoading(false);
       };
 
       getData();
@@ -34,19 +37,6 @@ const SingleImage = ({ image }) => {
     setIsOpen(false);
   };
 
-  const handleLike = (id) => {
-    axios
-      .post(
-        `https://api.unsplash.com/photos/${id}/like?client_id=${unAccessKey}`
-      )
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   return (
     <>
       <div>
@@ -56,6 +46,7 @@ const SingleImage = ({ image }) => {
           openModal={openModal}
           setIsOpen={setIsOpen}
           image={getImage}
+          imageLoading={imageLoading}
         ></ModalComponent>
         <div className="card card-compact  bg-base-100 shadow-xl">
           <figure>
@@ -80,13 +71,8 @@ const SingleImage = ({ image }) => {
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <button
-                  onClick={() => {
-                    handleLike(image?.id);
-                  }}
-                >
-                  <FiThumbsUp></FiThumbsUp>
-                </button>
+                <FiThumbsUp></FiThumbsUp>
+
                 <p>{image?.likes}</p>
               </div>
             </div>
