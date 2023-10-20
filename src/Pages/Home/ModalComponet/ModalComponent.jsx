@@ -7,7 +7,7 @@ import { saveAs } from "file-saver";
 import { SearchContext } from "../../../Context/SearchProvider";
 import { Vortex } from "react-loader-spinner";
 
-const unAccessKey = import.meta.env.VITE_unAccessKey;
+const unAccessKey = "EMzpEOhUJvnctdVDV2_i8QNJdzC4vDz2SwwZKdWPfp4";
 
 const ModalComponent = ({
   closeModal,

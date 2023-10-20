@@ -5,7 +5,7 @@ import { SearchContext } from "../../../Context/SearchProvider";
 
 const Gallery = () => {
   const { searchText, setSearchText } = useContext(SearchContext);
-  const unAccessKey = import.meta.env.VITE_unAccessKey;
+  const unAccessKey = "EMzpEOhUJvnctdVDV2_i8QNJdzC4vDz2SwwZKdWPfp4";
   const [images, setImages] = useState([]);
   const [searchImages, setSearchImages] = useState([]);
 
